@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "دیوار خاطرات سربندر",
   "main": "server.js",
-  "scripts": { "start": "node server.js" },
+  "scripts": { "start": "node server.js", "test": "node test/smoke.test.mjs" },
   "engines": { "node": ">=18" }
 }

@@ -1,0 +1,76 @@
+# CI + انتشار روی GitHub Pages
+# روی هر push/PR تست‌ها اجرا می‌شن؛ فقط push به main بعد از پاس‌شدن تست‌ها سایت رو منتشر می‌کنه.
+name: CI and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 22.x, 24.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Syntax check
+        run: node --check server.js
+
+      - name: Check index.html and public/index.html are in sync
+        run: |
+          if ! diff -q index.html public/index.html; then
+            echo "::error::index.html و public/index.html هم‌خوان نیستند؛ هر دو باید یکی باشند."
+            exit 1
+          fi
+
+      - name: Smoke test (server + API)
+        run: npm test
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Build static site
+        run: |
+          mkdir _site
+          cp -r public/. _site/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
