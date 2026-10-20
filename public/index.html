@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دیوار خاطرات سربندر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120d2b;--bg2:#241552;--tx:#f4f1ff;--mut:#b7aedc;--card:rgba(255,255,255,.07);--bd:rgba(255,255,255,.15);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#120d2b}}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:radial-gradient(circle at 20% 0,var(--bg2),var(--bg) 60%) fixed;color:var(--tx);min-height:100vh;overflow-x:hidden;line-height:1.8}
+.stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 20px 30px,#fff8,transparent),radial-gradient(2px 2px at 120px 90px,#fff6,transparent),radial-gradient(1.5px 1.5px at 200px 150px,#fff9,transparent);background-size:240px 200px;animation:tw 6s infinite alternate}
+@keyframes tw{to{opacity:.35}}
+header{text-align:center;padding:28px 16px 8px;position:relative}
+h1{font-size:clamp(28px,7vw,52px);font-weight:900;background:linear-gradient(90deg,#ffd93d,#ff6b6b,#a78bfa,#4dabf7,#69db7c,#ffd93d);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
+@keyframes shine{to{background-position:-300% 0}}
+.sub{color:var(--mut);margin-top:4px}
+nav{display:flex;gap:10px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+nav button,.btn{font:inherit;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);padding:10px 20px;border-radius:99px;cursor:pointer;transition:.25s}
+nav button.on,.btn.main{background:linear-gradient(135deg,#7c5cff,#c44dff);border-color:transparent;box-shadow:0 0 22px #8b5cf688}
+nav button:hover,.btn:hover{transform:translateY(-2px) scale(1.03)}
+main{max-width:1000px;margin:auto;padding:0 14px 60px;position:relative}
+.view{display:none}.view.on{display:block;animation:in .5s}
+@keyframes in{from{opacity:0;transform:translateY(16px)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.em{--c:#fff;position:relative;overflow:hidden;text-align:center;padding:18px 14px 20px;border-radius:24px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 24%,transparent),var(--card));border:1px solid color-mix(in srgb,var(--c) 55%,transparent);cursor:pointer;transition:.3s}
+.em:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 40px color-mix(in srgb,var(--c) 45%,transparent)}
+.em h3{font-size:20px;color:var(--c);filter:brightness(1.25)}
+.em p{color:var(--mut);font-size:14px;min-height:50px}
+.stage{height:170px;position:relative;display:flex;align-items:flex-end;justify-content:center}
+.char{width:120px;height:130px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+.orb{position:absolute;bottom:6px;left:50%;width:54px;height:54px;margin-left:-27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff9,var(--c) 55%,color-mix(in srgb,var(--c) 50%,#000));box-shadow:0 0 24px var(--c),0 0 50px var(--c);animation:orb 2s ease-in-out infinite;z-index:2}
+.orb:after{content:"";position:absolute;inset:8px;border-radius:50%;background:conic-gradient(from 0deg,#fff6,transparent,#fff6);animation:spin 3s linear infinite;filter:blur(3px)}
+@keyframes orb{50%{transform:scale(1.12)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.p{position:absolute;pointer-events:none;opacity:0;animation:fly var(--d,3s) linear forwards;z-index:1}
+@keyframes fly{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r,0deg))}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:18px;backdrop-filter:blur(8px)}
+.wh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wh .stage{height:110px;width:110px;transform:scale(.7);transform-origin:right center;margin-left:-20px}
+.seg{display:flex;background:#0003;border-radius:99px;padding:4px;margin:10px 0}
+.seg button{flex:1;font:inherit;color:var(--mut);background:none;border:0;padding:8px;border-radius:99px;cursor:pointer}
+.seg button.on{background:var(--c);color:#111;font-weight:700}
+input[type=text],textarea{width:100%;font:inherit;color:var(--tx);background:#0004;border:1px solid var(--bd);border-radius:14px;padding:12px;margin:6px 0}
+textarea{min-height:150px;resize:vertical}
+.prof{display:flex;gap:10px;align-items:center}
+.av{width:54px;height:54px;border-radius:50%;background:#fff2 center/cover;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none;border:2px solid var(--c,#fff5)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font:inherit;font-size:14px;color:var(--tx);background:var(--card);border:1px solid var(--bd);padding:6px 14px;border-radius:99px;cursor:pointer}
+.chip.on{background:var(--c,#7c5cff);color:#111;font-weight:700}
+.mem{--c:#fff;display:flex;gap:12px;margin-bottom:14px;border-right:5px solid var(--c);animation:in .6s}
+.mem .t{white-space:pre-wrap;margin:4px 0}
+.mem small{color:var(--mut)}
+.mem .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c);margin-left:6px}
+.note{color:var(--mut);text-align:center;padding:30px}
+.hide{display:none!important}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#fff;color:#222;padding:10px 20px;border-radius:99px;z-index:50;font-weight:700}
+.conf{position:fixed;top:-10px;width:10px;height:14px;z-index:60;animation:fall 2.2s ease-in forwards;pointer-events:none}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(720deg)}}
+.credit{text-align:center;padding:6px 16px calc(34px + env(safe-area-inset-bottom,0px));color:var(--mut)}
+.credit a{display:inline-flex;align-items:center;gap:8px;direction:ltr;color:var(--tx);font-weight:700;text-decoration:none;background:var(--card);border:1px solid var(--bd);padding:6px 16px;border-radius:99px;margin-right:6px;transition:.25s}
+.credit a:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 22px #e1306c88;border-color:#e1306c}
+.credit svg{width:22px;height:22px}
+.acts{display:flex;gap:8px;margin-top:8px}
+.act{font:inherit;font-size:14px;color:var(--tx);background:#fff1;border:1px solid var(--bd);border-radius:99px;padding:4px 14px;cursor:pointer;transition:.2s}
+.act:hover{background:#fff2}.act:active{transform:scale(1.25)}
+.act.on{border-color:#ff5d8f;background:#ff5d8f33}
+.cbox{margin-top:10px;border-top:1px dashed var(--bd);padding-top:10px}
+.cm{background:#0003;border-radius:12px;padding:8px 12px;margin-bottom:6px;font-size:14px;white-space:pre-wrap;animation:in .4s}
+.cm b{color:var(--c);filter:brightness(1.2);margin-left:6px}
+.cf{display:flex;gap:6px;flex-wrap:wrap}
+.cf input{flex:1 1 110px;margin:0;padding:8px 10px}
+.cf input.t{flex:3 1 170px}
+.cf .btn{padding:6px 16px}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<header>
+<h1>دیوار خاطرات سربندر</h1>
+<p class="sub">هر خاطره یه گوی رنگیه؛ گوی خودتو بذار رو دیوار شهر ✨</p>
+</header>
+<nav>
+<button id="n1" class="on" onclick="go('home')">✍️ خاطره بنویس</button>
+<button id="n2" onclick="go('read')">📖 خاطره ها رو بخون</button>
+</nav>
+<main>
+<section id="home" class="view on">
+<p class="note" style="padding:6px 0 18px">یه احساس انتخاب کن و خاطره‌ت رو بنویس</p>
+<div class="grid" id="cards"></div>
+</section>
+<section id="write" class="view">
+<button class="btn" onclick="go('home')">→ برگشت</button>
+<div class="card" id="wbox" style="margin-top:14px">
+<div class="wh"><div class="stage" id="wchar"></div><div><h2 id="wt"></h2><p class="sub" id="wd"></p></div></div>
+<div class="seg"><button id="m1" class="on" onclick="mode(0)">👤 معمولی</button><button id="m2" onclick="mode(1)">🕶️ ناشناس</button></div>
+<div id="prof" class="prof">
+<label class="av" id="av" style="cursor:pointer">🙂<input type="file" accept="image/*" id="file" hidden></label>
+<input type="text" id="nm" maxlength="30" placeholder="اسمت چیه؟ (اسم دلخواه)">
+</div>
+<textarea id="tx" maxlength="1500" placeholder="خاطره‌ت رو اینجا بنویس..."></textarea>
+<button class="btn main" style="width:100%;margin-top:8px" onclick="send()">گوی خاطره رو بفرست روی دیوار 🚀</button>
+</div>
+</section>
+<section id="read" class="view">
+<div class="chips" id="chips"></div>
+<div id="list"></div>
+</section>
+</main>
+<footer class="credit">ساخته شده توسط :
+<a href="https://www.instagram.com/it_hasss_16v?xtok=Y3BtMzZzNTBjeHJt" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="2" stroke-linecap="round"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".65" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r=".6" fill="#d62976"/></svg>it_hasss_16v</a></footer>
+<script>
+const E=[
+{k:'joy',n:'شادی',c:'#ffd93d',d:'خاطره‌های خنده‌دار و شادتو اینجا بنویس',fx:'spark'},
+{k:'sad',n:'غم',c:'#4dabf7',d:'خاطره‌های غمگین و دلتنگیتو اینجا بنویس',fx:'drop'},
+{k:'anger',n:'خشم',c:'#ff4d4d',d:'خاطره‌هایی که حرصتو درآورد و عصبانیت کرد اینجا بنویس',fx:'flame'},
+{k:'disgust',n:'انزجار',c:'#69db7c',d:'خاطره‌های چندش و حال‌به‌هم‌زن رو اینجا بنویس',fx:'bub'},
+{k:'fear',n:'ترس',c:'#a78bfa',d:'خاطره‌های ترسناک و لحظه‌های وحشتتو اینجا بنویس',fx:'ghost'}];
+const M={};E.forEach(e=>M[e.k]=e);
+const FACES={
+joy:'<path d="M42 62q18 22 36 0" fill="#fff" stroke="#333" stroke-width="3"/><circle cx="46" cy="48" r="5" fill="#222"/><circle cx="74" cy="48" r="5" fill="#222"/><path d="M60 8l4 10 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z" fill="#fff8"/>',
+sad:'<path d="M44 74q16-14 32 0" fill="none" stroke="#123" stroke-width="3.5"/><circle cx="46" cy="52" r="6" fill="#123"/><circle cx="74" cy="52" r="6" fill="#123"/><path d="M38 40l16 6M82 40l-16 6" stroke="#123" stroke-width="3"/><path d="M46 60q-3 8 0 12" stroke="#bfe" stroke-width="3" fill="none"/>',
+anger:'<path d="M44 72h32" stroke="#300" stroke-width="4"/><path d="M36 38l22 10M84 38L62 48" stroke="#300" stroke-width="5"/><circle cx="48" cy="54" r="4" fill="#300"/><circle cx="72" cy="54" r="4" fill="#300"/>',
+disgust:'<path d="M42 72q8-8 14 0t14 0t8-4" fill="none" stroke="#041" stroke-width="3.5"/><path d="M38 44h18M66 44h18" stroke="#041" stroke-width="4"/><circle cx="48" cy="54" r="5" fill="#041"/><circle cx="74" cy="54" r="5" fill="#041"/>',
+fear:'<ellipse cx="60" cy="74" rx="8" ry="10" fill="#214"/><circle cx="45" cy="50" r="9" fill="#fff"/><circle cx="75" cy="50" r="9" fill="#fff"/><circle cx="45" cy="52" r="3" fill="#214"/><circle cx="75" cy="52" r="3" fill="#214"/><path d="M34 32q10-6 20 0M66 32q10-6 20 0" stroke="#214" stroke-width="3" fill="none"/>'};
+const SHAPE={joy:'M60 4l12 22 24-6-4 24 16 12-20 14 6 24-24-4-10 20-10-20-24 4 6-24L2 56l16-12-4-24 24 6z',
+sad:'M60 6C90 6 108 40 108 76c0 34-22 52-48 52S12 110 12 76C12 40 30 6 60 6z',
+anger:'M20 20l20 14 20-24 20 24 20-14-4 40c10 16 4 50-36 62C20 110 10 76 24 60z',
+disgust:'M24 30C40 4 90 4 100 34c14 12 14 60-6 80-24 14-60 10-76-10C4 80 8 50 24 30z',
+fear:'M60 6c34 0 50 26 46 56l4 66-16-14-14 14-20-14-20 14-14-14-16 14 4-66C10 32 26 6 60 6z'};
+function charSVG(k){const e=M[k];return `<svg class="char" viewBox="0 0 120 130" style="--c:${e.c}"><path d="${SHAPE[k]}" fill="${e.c}" style="filter:drop-shadow(0 0 10px ${e.c})"/>${FACES[k]}</svg>`}
+function stage(k){return `<div class="stage" data-fx="${k}">${charSVG(k)}<div class="orb"></div></div>`}
+// effects
+const FX={
+spark:(s)=>mk(s,'✦','#fff7b0',(Math.random()*160-80),-120,14),
+drop:(s)=>mk(s,'💧','',(Math.random()*60-30),90,12,'top:0;left:'+(20+Math.random()*60)+'%'),
+flame:(s)=>mk(s,'🔥','',(Math.random()*40-20),-110,16),
+bub:(s)=>mk(s,'●','#8ff0a0',(Math.random()*80-40),-120,10),
+ghost:(s)=>mk(s,'!','#d6c8ff',(Math.random()*120-60),-100,18)};
+function mk(s,t,col,x,y,sz,pos){const p=document.createElement('span');p.className='p';p.textContent=t;
+p.style.cssText=`${pos||'bottom:40px;left:'+(25+Math.random()*50)+'%'};--x:${x}px;--y:${y}px;--d:${2+Math.random()*2}s;--r:${Math.random()*180-90}deg;font-size:${sz}px;color:${col};font-weight:900`;
+s.appendChild(p);setTimeout(()=>p.remove(),4200)}
+setInterval(()=>document.querySelectorAll('.stage[data-fx]').forEach(s=>{if(s.offsetParent)FX[M[s.dataset.fx].fx](s)}),330);
+// home
+const cards=document.getElementById('cards');
+E.forEach(e=>{const d=document.createElement('div');d.className='em';d.style.setProperty('--c',e.c);
+d.innerHTML=`${stage(e.k)}<h3>خاطره‌های ${e.n}</h3><p>${e.d}</p>`;d.onclick=()=>open_(e.k);cards.appendChild(d)});
+let cur=null,anon=0,avatar=null,all=[],flt='all',db=null,uid=null;
+function go(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id===v||(v==='home'&&0)));
+document.getElementById('n1').classList.toggle('on',v!=='read');document.getElementById('n2').classList.toggle('on',v==='read');
+if(v==='read')render();scrollTo({top:0,behavior:'smooth'})}
+function open_(k){cur=k;const e=M[k];const b=document.getElementById('wbox');b.style.setProperty('--c',e.c);
+document.getElementById('wchar').innerHTML=charSVG(k)+'<div class="orb"></div>';document.getElementById('wchar').dataset.fx=k;
+document.getElementById('wt').textContent='خاطره‌ی '+e.n;document.getElementById('wt').style.color=e.c;
+document.getElementById('wd').textContent=e.d;document.getElementById('av').style.setProperty('--c',e.c);
+document.getElementById('m1').style.setProperty('--c',e.c);document.getElementById('m2').style.setProperty('--c',e.c);go('write')}
+function mode(a){anon=a;document.getElementById('m1').classList.toggle('on',!a);document.getElementById('m2').classList.toggle('on',!!a);
+document.getElementById('prof').classList.toggle('hide',!!a)}
+document.getElementById('file').onchange=ev=>{const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+const c=document.createElement('canvas');c.width=c.height=96;const x=c.getContext('2d');const s=Math.min(im.width,im.height);
+x.drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,96,96);avatar=c.toDataURL('image/jpeg',.7);
+const a=document.getElementById('av');a.style.backgroundImage=`url(${avatar})`;a.firstChild.textContent=''};im.src=r.result};r.readAsDataURL(f)};
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
+function confetti(c){for(let i=0;i<60;i++){const d=document.createElement('i');d.className='conf';d.style.cssText=`left:${Math.random()*100}%;background:${i%2?c:'#fff'};--x:${Math.random()*200-100}px;animation-delay:${Math.random()*.5}s`;document.body.appendChild(d);setTimeout(()=>d.remove(),3000)}}
+async function send(){const t=document.getElementById('tx').value.trim();if(t.length<5)return toast('یه خاطره‌ی کامل‌تر بنویس 🙂');
+const rec={emotion:cur,text:t,anon:!!anon,name:anon?'':(document.getElementById('nm').value.trim()||'یه سربندری'),avatar:anon?'':(avatar||''),uid:uid||'',ts:Date.now()};
+try{if(db)await db.collection('memories').add(rec);else{const r=await fetch('/api/memories',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(rec)});if(!r.ok)throw new Error(r.status);await load()}}catch(e){return toast('ثبت نشد، دوباره امتحان کن')}
+confetti(M[cur].c);toast('خاطره‌ت رو دیوار ثبت شد ✨');document.getElementById('tx').value='';setTimeout(()=>go('read'),1200)}
+// read
+let open=new Set(),drafts={},last='',raw={m:[],l:[],c:[]};
+const cid=(()=>{const g=()=>Math.random().toString(36).slice(2)+Date.now().toString(36)+Math.random().toString(36).slice(2);try{let c=localStorage.getItem('cid');if(!c){c=g();localStorage.setItem('cid',c)}return c}catch(e){return g()}})();
+const J={'Content-Type':'application/json'},onRead=()=>document.getElementById('read').classList.contains('on');
+function render(auto){const ae=document.activeElement;if(auto&&ae&&ae.classList&&ae.classList.contains('cin'))return;
+document.querySelectorAll('.cin').forEach(i=>{drafts[i.dataset.id+i.dataset.f]=i.value});
+const ch=document.getElementById('chips');ch.innerHTML='';
+[{k:'all',n:'همه',c:'#7c5cff'},...E].forEach(e=>{const b=document.createElement('button');b.className='chip'+(flt===e.k?' on':'');b.style.setProperty('--c',e.c);b.textContent=e.n;b.onclick=()=>{flt=e.k;render()};ch.appendChild(b)});
+const L=document.getElementById('list');L.innerHTML='';
+const items=all.filter(m=>flt==='all'||m.emotion===flt).sort((a,b)=>b.ts-a.ts);
+if(!items.length){L.innerHTML='<p class="note">هنوز خاطره‌ای اینجا نیست. اولین نفر باش! 🌟</p>';return}
+items.forEach(m=>{const e=M[m.emotion]||E[0];const d=document.createElement('div');d.className='card mem';d.style.setProperty('--c',e.c);
+const a=document.createElement('div');a.className='av';if(m.anon){a.textContent='🕶️'}else if(m.avatar){a.style.backgroundImage=`url(${m.avatar})`}else a.textContent='🙂';
+const b=document.createElement('div');b.style.flex='1';b.style.minWidth='0';
+const h=document.createElement('b');h.textContent=m.anon?'ناشناس':m.name;const s=document.createElement('span');s.className='dot';h.prepend(s);
+const t=document.createElement('div');t.className='t';t.textContent=m.text;
+const sm=document.createElement('small');sm.textContent='خاطره‌ی '+e.n+' · '+new Date(m.ts).toLocaleDateString('fa-IR');
+const cs=m.comments||[];
+const ac=document.createElement('div');ac.className='acts';
+const lb=document.createElement('button');lb.className='act'+(m.liked?' on':'');lb.textContent=(m.liked?'❤️':'🤍')+' '+(m.likes||0);lb.onclick=()=>like(m);
+const cb=document.createElement('button');cb.className='act';cb.textContent='💬 '+cs.length+' نظر';
+const box=document.createElement('div');box.className='cbox'+(open.has(m.id)?'':' hide');
+cb.onclick=()=>{open.has(m.id)?open.delete(m.id):open.add(m.id);box.classList.toggle('hide')};
+ac.append(lb,cb);
+cs.forEach(c=>{const x=document.createElement('div');x.className='cm';const n=document.createElement('b');n.textContent=c.name||'ناشناس';x.append(n,document.createTextNode(c.text));box.appendChild(x)});
+const f=document.createElement('div');f.className='cf';
+const ni=document.createElement('input');ni.type='text';ni.className='cin';ni.dataset.id=m.id;ni.dataset.f='n';ni.maxLength=30;ni.placeholder='اسمت (خالی = ناشناس)';ni.value=drafts[m.id+'n']||'';
+const ti=document.createElement('input');ti.type='text';ti.className='cin t';ti.dataset.id=m.id;ti.dataset.f='t';ti.maxLength=500;ti.placeholder='نظرت رو بنویس...';ti.value=drafts[m.id+'t']||'';
+ti.onkeydown=ev=>{if(ev.key==='Enter')comment(m,ni,ti)};
+const sb=document.createElement('button');sb.className='btn main';sb.textContent='ارسال';sb.onclick=()=>comment(m,ni,ti);
+f.append(ni,ti,sb);box.appendChild(f);
+b.append(h,t,sm,ac,box);d.append(a,b);L.appendChild(d)})}
+async function like(m){try{if(db){const k=uid||cid,ref=db.collection('likes').doc(m.id+'_'+k);if(m.liked)await ref.delete();else await ref.set({mid:m.id,uid:k,ts:Date.now()})}
+else{const r=await fetch('/api/memories/'+m.id+'/like',{method:'POST',headers:J,body:JSON.stringify({cid})});if(!r.ok)throw 0;await load()}}catch(e){toast('خطا، دوباره امتحان کن')}}
+async function comment(m,ni,ti){const text=ti.value.trim();if(text.length<2)return toast('یه نظر بنویس 🙂');const name=ni.value.trim()||'ناشناس';
+try{if(db)await db.collection('comments').add({mid:m.id,name,text:text.slice(0,500),uid:uid||'',ts:Date.now()});
+else{const r=await fetch('/api/memories/'+m.id+'/comments',{method:'POST',headers:J,body:JSON.stringify({name,text})});if(!r.ok)throw 0;await load()}
+delete drafts[m.id+'t'];ti.value='';open.add(m.id);toast('نظرت ثبت شد 💬')}catch(e){toast('نظر ثبت نشد، دوباره امتحان کن')}}
+async function load(auto){try{const r=await fetch('/api/memories?cid='+encodeURIComponent(cid));if(!r.ok)return;const d=await r.json();const s=JSON.stringify(d);if(auto&&s===last)return;last=s;all=d;if(onRead())render(auto)}catch(e){}}
+function build(){const L={},K={},C={},me=uid||cid;raw.l.forEach(l=>{L[l.mid]=(L[l.mid]||0)+1;if(l.uid===me)K[l.mid]=1});raw.c.forEach(c=>(C[c.mid]=C[c.mid]||[]).push(c));
+all=raw.m.map(m=>({...m,likes:L[m.id]||0,liked:!!K[m.id],comments:(C[m.id]||[]).sort((a,b)=>a.ts-b.ts)}));if(onRead())render(true)}
+const rows=s=>s.docs.map(d=>({id:d.id,...(typeof d.data==='function'?d.data():d.data)}));
+(async()=>{try{const u=await claude.use('user');if(u)uid=await u.id();db=await claude.use('db');
+if(db){const sub=(n,k,q)=>(q||db.collection(n)).onSnapshot(s=>{raw[k]=rows(s);build()},()=>{});
+sub('memories','m',db.collection('memories').orderBy('ts','desc').limit(200));sub('likes','l');sub('comments','c')}}catch(e){}
+if(!db){load();setInterval(()=>load(1),15000)}})();
+</script>
+</body>
+</html>
