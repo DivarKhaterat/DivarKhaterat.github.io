@@ -1,0 +1,9 @@
+# روی Netlify سرور همیشه‌روشن نداریم؛ فایل‌های public سرو می‌شن و API همون server.js
+# با یک Netlify Function (netlify/functions/api.mts) و دیتابیس Netlify اجرا می‌شه.
+# روی سیستم خودت یا هاست معمولی: npm start  (یعنی node server.js)
+[build]
+  publish = "public"
+
+# پروژه Next.js نیست؛ پلاگین Next.js که از پنل Netlify فعال شده رو غیرفعال می‌کنیم
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
